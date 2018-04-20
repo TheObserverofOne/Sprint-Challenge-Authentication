@@ -1,7 +1,7 @@
 mport axios from 'axios';
 
 axios.defaults.withCredentials = true;
-const ROOT_URL = 'http://localhost:5000/api';
+const ROOT_URL = 'http://localhost:5000';
 
 export const USER_REGISTERED = 'USER_REGISTERED';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';

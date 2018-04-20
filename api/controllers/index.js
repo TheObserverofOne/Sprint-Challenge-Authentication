@@ -1,9 +1,9 @@
 const { getAllJokes } = require('./jokes');
-const { login } = require('./login');
+const { signin } = require('./login');
 const { createUser } = require('./user');
 
 module.exports = {
   getAllJokes,
-  login,
+  signin,
   createUser
 };

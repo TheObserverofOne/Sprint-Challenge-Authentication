@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { mysecret } = require('../../config');
 const User = require('../models/userModels');
 
-const login = (req, res) => {
+const signin = (req, res) => {
   const { username, password } = req.body;
   
   User.findOne({ username }, (err, user) => {
@@ -32,5 +32,5 @@ const login = (req, res) => {
 };
 
 module.exports = {
-  login
+  signin
 };
