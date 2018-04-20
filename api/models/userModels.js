@@ -9,26 +9,30 @@ const UserSchema = Schema({
     type: String,
     unique: true,
     lowercase: true,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   }
 });
 
 UserSchema.pre('save', function(next) {
-  bcrypt.hash(this.password, SALT_ROUNDS, (err, hash) => {
-    if (err) return next(err);
-    this.password = hash;
-    next();
-  });
+
+  bcrypt.hash(this.password, SALT_ROUNDS)
+    .then(hash => {
+      this.password = hash;
+      next();
+    })
+    .catch(err => {
+      next(err);
+    });
 });
 
 UserSchema.methods.checkPassword = function(plainTextPW, callBack) {
-  bcrypt.compare(plainTextPW, this.password, (err, isMatch) => {
-    if (err) return callBack(err);
-    callBack(null, isMatch);
+  bcrypt.compare(plainTextPW, this.password)
+    .then(good => {
+    callBack(null, good);
   });
 };
 
